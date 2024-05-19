@@ -6,7 +6,6 @@ import lombok.experimental.FieldDefaults;
 import org.example.bean.User;
 import org.example.util.Util;
 
-import javax.persistence.Access;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +56,7 @@ public class UserDaoJDBCImpl implements UserDao {
         String sql = "DELETE FROM user WHERE id = ?";
         try(PreparedStatement statement = connection.prepareStatement(sql)){
             statement.setLong(1, id);
+            statement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
             try {
@@ -91,7 +91,7 @@ public class UserDaoJDBCImpl implements UserDao {
             }
             throw new RuntimeException(e);
         }
-        return null;
+        return users;
     }
 
     @Override
