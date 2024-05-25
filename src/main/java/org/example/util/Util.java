@@ -56,4 +56,26 @@ public class Util {
         }
         return sessionFactory;
     }
+
+    public static SessionFactory getSessionFactoryProperties(){
+
+        if (Objects.isNull(sessionFactory)) {
+            Configuration configuration = new Configuration();
+            configuration.addAnnotatedClass(User.class);
+            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
+                    .applySettings(configuration.getProperties()).build();
+            sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+
+        }
+        return sessionFactory;
+    }
+    public static SessionFactory getSessionFactory(){
+        if (Objects.isNull(sessionFactory)){
+            Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
+
+            sessionFactory = configuration.buildSessionFactory();
+
+        }
+        return sessionFactory;
+    }
 }

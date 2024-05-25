@@ -9,6 +9,7 @@ import org.example.util.Util;
 public class Main {
     public static void main(String[] args) {
 
+        Util.getSessionFactory();
         script(new UserServiceJDBCImpl());
     }
     private static void script(UserService userService){
