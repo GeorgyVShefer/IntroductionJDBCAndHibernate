@@ -1,16 +1,19 @@
 package org.example;
 
 import org.example.dao.UserDao;
+import org.example.dao.UserDaoHibernateIml;
 import org.example.dao.UserDaoJDBCImpl;
 import org.example.service.UserService;
+import org.example.service.UserServiceHibernateImpl;
 import org.example.service.UserServiceJDBCImpl;
 import org.example.util.Util;
 
 public class Main {
     public static void main(String[] args) {
 
-        Util.getSessionFactory();
         script(new UserServiceJDBCImpl());
+        script(new UserServiceHibernateImpl());
+
     }
     private static void script(UserService userService){
         userService.createUserTable();

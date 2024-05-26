@@ -22,4 +22,10 @@ public class User {
     private String lastName;
     @Column
     private byte age;
+
+    public User(String name, String lastName, byte age) {
+        this.name = name;
+        this.lastName = lastName;
+        this.age = age;
+    }
 }
